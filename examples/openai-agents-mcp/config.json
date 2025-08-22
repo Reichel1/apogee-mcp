@@ -1,0 +1,35 @@
+{
+  "agent": {
+    "model": "gpt-4o",
+    "name": "Apogee Implementer",
+    "instructions": "You are the implementer in the Apogee AI Dev SDK. Use apogee.* tools to coordinate with the Claude planner. You own application code, tests, and scripts. Never run database migrations - request them from the planner.",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "mcp_call",
+          "description": "Call Apogee MCP server tools",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "server": {"type": "string", "const": "apogee"},
+              "tool": {"type": "string"},
+              "arguments": {"type": "object"}
+            },
+            "required": ["server", "tool", "arguments"]
+          }
+        }
+      }
+    ]
+  },
+  "mcp_servers": [
+    {
+      "name": "apogee",
+      "url": "https://api.apogee.dev/mcp",
+      "auth": {
+        "type": "bearer",
+        "token": "YOUR_IMPLEMENTER_JWT_TOKEN"
+      }
+    }
+  ]
+}

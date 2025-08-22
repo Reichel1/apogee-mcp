@@ -1,0 +1,20 @@
+{
+  "model": "claude-sonnet-4-20250514",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Use Apogee tools to plan database schema and coordinate with GPT-5 implementer"
+    }
+  ],
+  "mcp_servers": [
+    {
+      "type": "url",
+      "url": "https://api.apogee.dev/mcp",
+      "name": "apogee",
+      "authorization_token": "Bearer YOUR_PLANNER_JWT_TOKEN"
+    }
+  ],
+  "_headers": {
+    "anthropic-beta": "mcp-client-2025-04-04"
+  }
+}

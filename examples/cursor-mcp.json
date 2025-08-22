@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "apogee": {
+      "command": "npx",
+      "args": ["-y", "@apogee/mcp-server", "--stdio"],
+      "env": {
+        "APOGEE_ROLE": "implementer",
+        "APOGEE_SESSION_ID": "cursor-session"
+      }
+    }
+  }
+}
