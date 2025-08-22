@@ -70,7 +70,7 @@ export default function Home() {
                 </div>
                 <div>
                   <span className="text-xl font-semibold text-black">Apogee MCP</span>
-                  <p className="text-xs text-gray-600">by Apogee Studios</p>
+                  <p className="text-xs text-gray-600">Multi-Agent AI Coordination</p>
                 </div>
               </div>
             </div>
