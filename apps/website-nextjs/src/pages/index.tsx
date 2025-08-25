@@ -12,7 +12,7 @@ import {
   Star,
   Copy,
   Download,
-  GitHub,
+  Github,
   ExternalLink
 } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -79,7 +79,7 @@ export default function Home() {
               <a href="#pricing" className="text-gray-600 hover:text-black transition-colors">Pricing</a>
               <a href="/docs" className="text-gray-600 hover:text-black transition-colors">Docs</a>
               <a href="https://github.com/Reichel1/apogee-mcp" className="text-gray-600 hover:text-black transition-colors">
-                <GitHub className="h-5 w-5" />
+                <Github className="h-5 w-5" />
               </a>
               <button className="btn-primary">
                 Try Now
@@ -408,7 +408,7 @@ export default function Home() {
               </p>
               <div className="flex space-x-4">
                 <a href="https://github.com/Reichel1/apogee-mcp" className="text-gray-600 hover:text-black">
-                  <GitHub className="h-5 w-5" />
+                  <Github className="h-5 w-5" />
                 </a>
                 <a href="https://github.com/Reichel1/apogee-mcp" className="text-gray-600 hover:text-black">
                   <Star className="h-5 w-5" />

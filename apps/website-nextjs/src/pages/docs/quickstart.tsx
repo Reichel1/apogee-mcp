@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Copy, CheckCircle, Code, Bot, Zap, ExternalLink } from 'lucide-react';
 import * as Tabs from '@radix-ui/react-tabs';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { CodeBlock } from '../../components/CodeBlock';
 import toast from 'react-hot-toast';
-
 export default function QuickStart() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
-
   const copyToClipboard = async (text: string, id: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -19,7 +16,6 @@ export default function QuickStart() {
       toast.error('Failed to copy');
     }
   };
-
   const cursorConfig = `{
   "mcpServers": {
     "apogee": {
@@ -32,7 +28,6 @@ export default function QuickStart() {
     }
   }
 }`;
-
   const claudeConfig = `{
   "model": "claude-sonnet-4-20250514",
   "messages": [
@@ -50,9 +45,7 @@ export default function QuickStart() {
     }
   ]
 }`;
-
   const openaiConfig = `import { MCPConnector } from '@openai/agents-sdk';
-
 const apogeeConnector = new MCPConnector({
   url: 'https://mcp.apogeestudios.dev/mcp',
   auth: {
@@ -60,7 +53,6 @@ const apogeeConnector = new MCPConnector({
     token: 'YOUR_IMPLEMENTER_TOKEN'
   }
 });
-
 const agent = new Agent({
   model: 'gpt-4o',
   tools: [apogeeConnector],
@@ -68,9 +60,7 @@ const agent = new Agent({
   Use apogee.* tools to coordinate with Claude planner.
   Never run database migrations - that's Claude's job.\`
 });`;
-
   const npmInstall = `npm install -g @apogee/mcp-server`;
-
   const examples = [
     {
       title: 'Create Shared TODOs',
@@ -102,11 +92,9 @@ const agent = new Agent({
   planId: "create_users_table",
   dryRun: false
 });
-
 // Result: Creates table with RLS policies`
     }
   ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950">
       <div className="container mx-auto px-4 py-12">
@@ -122,7 +110,6 @@ const agent = new Agent({
               Get Apogee MCP running with Cursor, Claude Code, and OpenAI Agents in minutes
             </p>
           </div>
-
           {/* Installation */}
           <motion.section 
             initial={{ opacity: 0, y: 20 }}
@@ -138,13 +125,9 @@ const agent = new Agent({
               Install the Apogee MCP server globally via npm:
             </p>
             <div className="relative bg-slate-950 p-4 rounded-lg">
-              <SyntaxHighlighter 
-                language="bash" 
-                style={oneDark}
-                customStyle={{ background: 'transparent', padding: 0 }}
-              >
+              <CodeBlock language="bash" className="bg-transparent p-0">
                 {npmInstall}
-              </SyntaxHighlighter>
+              </CodeBlock>
               <button
                 onClick={() => copyToClipboard(npmInstall, 'npm')}
                 className="absolute top-2 right-2 p-2 bg-slate-700 hover:bg-slate-600 rounded text-white transition-colors"
@@ -153,7 +136,6 @@ const agent = new Agent({
               </button>
             </div>
           </motion.section>
-
           {/* Platform Setup */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -187,7 +169,6 @@ const agent = new Agent({
                   OpenAI Agents
                 </Tabs.Trigger>
               </Tabs.List>
-
               <Tabs.Content value="cursor">
                 <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-6">
                   <h3 className="text-xl font-semibold text-white mb-4">Cursor Setup (Implementer Role)</h3>
@@ -198,13 +179,13 @@ const agent = new Agent({
                         Add this to your <code className="bg-slate-800 px-2 py-1 rounded text-purple-300">.cursor/mcp.json</code> file:
                       </p>
                       <div className="relative">
-                        <SyntaxHighlighter 
+                        <CodeBlock 
                           language="json" 
-                          style={oneDark}
-                          customStyle={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '8px' }}
+                          
+                          
                         >
                           {cursorConfig}
-                        </SyntaxHighlighter>
+                        </CodeBlock>
                         <button
                           onClick={() => copyToClipboard(cursorConfig, 'cursor')}
                           className="absolute top-2 right-2 p-2 bg-slate-700 hover:bg-slate-600 rounded text-white transition-colors"
@@ -228,7 +209,6 @@ const agent = new Agent({
                   </div>
                 </div>
               </Tabs.Content>
-
               <Tabs.Content value="claude">
                 <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-6">
                   <h3 className="text-xl font-semibold text-white mb-4">Claude Code Setup (Planner Role)</h3>
@@ -251,13 +231,13 @@ const agent = new Agent({
                         For API usage, include the MCP server configuration:
                       </p>
                       <div className="relative">
-                        <SyntaxHighlighter 
+                        <CodeBlock 
                           language="json" 
-                          style={oneDark}
-                          customStyle={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '8px' }}
+                          
+                          
                         >
                           {claudeConfig}
-                        </SyntaxHighlighter>
+                        </CodeBlock>
                         <button
                           onClick={() => copyToClipboard(claudeConfig, 'claude')}
                           className="absolute top-2 right-2 p-2 bg-slate-700 hover:bg-slate-600 rounded text-white transition-colors"
@@ -279,7 +259,6 @@ const agent = new Agent({
                   </div>
                 </div>
               </Tabs.Content>
-
               <Tabs.Content value="openai">
                 <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-6">
                   <h3 className="text-xl font-semibold text-white mb-4">OpenAI Agents Setup</h3>
@@ -290,13 +269,13 @@ const agent = new Agent({
                         Use OpenAI's remote MCP connector to connect to Apogee:
                       </p>
                       <div className="relative">
-                        <SyntaxHighlighter 
+                        <CodeBlock 
                           language="typescript" 
-                          style={oneDark}
-                          customStyle={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '8px' }}
+                          
+                          
                         >
                           {openaiConfig}
-                        </SyntaxHighlighter>
+                        </CodeBlock>
                         <button
                           onClick={() => copyToClipboard(openaiConfig, 'openai')}
                           className="absolute top-2 right-2 p-2 bg-slate-700 hover:bg-slate-600 rounded text-white transition-colors"
@@ -322,7 +301,6 @@ const agent = new Agent({
               </Tabs.Content>
             </Tabs.Root>
           </motion.section>
-
           {/* Example Usage */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -336,13 +314,13 @@ const agent = new Agent({
                 <div key={example.title} className="bg-slate-900/50 border border-slate-700 rounded-lg p-6">
                   <h3 className="text-lg font-semibold text-white mb-4">{example.title}</h3>
                   <div className="relative">
-                    <SyntaxHighlighter 
+                    <CodeBlock 
                       language="typescript" 
-                      style={oneDark}
-                      customStyle={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '8px' }}
+                      
+                      
                     >
                       {example.code}
-                    </SyntaxHighlighter>
+                    </CodeBlock>
                     <button
                       onClick={() => copyToClipboard(example.code, `example-${idx}`)}
                       className="absolute top-2 right-2 p-2 bg-slate-700 hover:bg-slate-600 rounded text-white transition-colors"
@@ -354,7 +332,6 @@ const agent = new Agent({
               ))}
             </div>
           </motion.section>
-
           {/* Next Steps */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}

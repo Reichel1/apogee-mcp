@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Copy, CheckCircle, Terminal, Code, Database, AlertCircle, ExternalLink, GitHub } from 'lucide-react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Copy, CheckCircle, Terminal, Code, Database, AlertCircle, ExternalLink, Github } from 'lucide-react';
+import { CodeBlock } from '../../components/CodeBlock';
 import toast from 'react-hot-toast';
 
 export default function Installation() {
@@ -206,13 +205,9 @@ export default function Installation() {
                       {copiedCode === 'cursor' ? <CheckCircle className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4 text-gray-600" />}
                     </button>
                   </div>
-                  <SyntaxHighlighter 
-                    language="json" 
-                    style={oneDark}
-                    customStyle={{ margin: 0, background: '#f9fafb', color: '#1f2937' }}
-                  >
+                  <CodeBlock language="json">
                     {cursorConfig}
-                  </SyntaxHighlighter>
+                  </CodeBlock>
                 </div>
               </div>
 
@@ -405,7 +400,7 @@ export default function Installation() {
                 href="https://github.com/Reichel1/apogee-mcp"
                 className="btn-ghost inline-flex items-center gap-2"
               >
-                <GitHub className="h-4 w-4" />
+                <Github className="h-4 w-4" />
                 View Source
               </a>
             </div>
